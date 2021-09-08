@@ -5,14 +5,12 @@
  * @Date: 2021-09-07 21:25:47
  */
 
-import React from 'react'
+import React from 'react';
 
-const Main = () => {
-  return (
-    <div>
-      内容主体
-    </div>
-  )
-}
+const Main = () => (
+  <div>
+    内容主体
+  </div>
+);
 
-export default Main
+export default Main;

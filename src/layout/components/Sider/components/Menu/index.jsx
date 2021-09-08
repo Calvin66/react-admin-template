@@ -5,16 +5,14 @@
  * @Date: 2021-09-08 21:54:06
  */
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Meun extends Component {
   render() {
     return (
-      <div>
-        
-      </div>
-    )
+      <div />
+    );
   }
 }
 
-export default Meun
+export default Meun;

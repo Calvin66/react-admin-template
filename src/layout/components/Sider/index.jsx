@@ -5,14 +5,12 @@
  * @Date: 2021-09-07 21:25:49
  */
 
-import React from 'react'
+import React from 'react';
 
-const Sider = () => {
-  return (
-    <div>
-      侧边栏
-    </div>
-  )
-}
+const Sider = () => (
+  <div>
+    侧边栏
+  </div>
+);
 
-export default Sider
+export default Sider;
