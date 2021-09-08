@@ -4,17 +4,20 @@
  * @Author: Calvin
  * @Date: 2021-09-07 22:26:27
  */
-
-import { Form, Input, Button, Checkbox } from "antd";
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import { Form, Input, Button,Spin,message } from "antd";
 import './inde.less'
 
-const Login = () => {
+const Login = (props) => {
+  const [loading, setLoading] = useState(false);
   const onFinish = (values) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    setLoading(true);
+    setTimeout(()=>{
+      message.success("登录成功");
+      setLoading(false);
+      props.history.push('/')
+    },1000)
   };
 
   return (
@@ -32,59 +35,55 @@ const Login = () => {
           remember: true,
         }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+         <div className="text-center">
+            <h2>用户登录</h2>
+          </div>
+          <Spin spinning={loading} tip="登录中..." >
+            <Form.Item
+            label="用户名"
+            name="username"
+            initialValue= "admin" // 初始值
+            rules={[
+              {
+                required: true,
+                message: "请输入用户名",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your password!",
-            },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
+            <Form.Item
+              label="密码"
+              name="password"
+              initialValue="123456"
+              rules={[
+                {
+                  required: true,
+                  message: "请输入密码!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
 
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item
+            <Form.Item
           wrapperCol={{
             offset: 8,
             span: 16,
           }}
         >
           <Button type="primary" htmlType="submit">
-            Submit
+            登录
           </Button>
         </Form.Item>
+          </Spin>
+
       </Form>
     </div>
   );
 };
 
-export default Login;
+export default withRouter(Login);

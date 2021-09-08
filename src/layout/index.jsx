@@ -14,9 +14,9 @@ import Main from './components/Main.jsx'
 const Layout = () => {
   return (
     <div>
-    <Header></Header>
-    <Sider></Sider>
-    <Main></Main>
+      <Header />
+      <Sider />
+      <Main />
     </div>
   )
 }

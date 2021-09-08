@@ -5,7 +5,7 @@
  * @Date: 2021-09-07 21:46:27
  */
 import React, { Component } from "react";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Layout from "@/layout";
 import Login from "../views/Login";
 
