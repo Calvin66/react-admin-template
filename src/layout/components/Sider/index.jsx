@@ -6,10 +6,11 @@
  */
 
 import React from 'react';
+import SubMenu from './components/SubMenu';
 
 const Sider = () => (
   <div>
-    侧边栏
+    <SubMenu />
   </div>
 );
 

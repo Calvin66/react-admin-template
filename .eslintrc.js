@@ -1,3 +1,8 @@
+/*
+ * @Descripttion: 
+ * @Author: Calvin
+ * @Date: 2021-09-09 09:06:00
+ */
 module.exports = {
   env: {
     browser: true,
@@ -64,7 +69,7 @@ module.exports = {
     'no-use-before-define': 0,
     // 允许代码后面空白
     'no-trailing-spaces': 0,
-
+    'no-unused-vars': 1,
     // 关闭大括号内的换行符要求
     'object-curly-newline': 0,
 
@@ -80,7 +85,7 @@ module.exports = {
     'import/no-unresolved': 0,
 
     // 关闭解构赋值报错
-    'react/destructuring-assignment': 0,   
+    'react/destructuring-assignment': 0,
     // 允许在 .js 和 .jsx 文件中使用  jsx
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     // jsx > 紧跟着属性
@@ -93,5 +98,8 @@ module.exports = {
     'react/forbid-prop-types': 0,
     // 关闭default-props检查
     'react/require-default-props': 0,
+    // 关闭react强制状态初始化风格
+    'react/state-in-constructor': 0,
+    'react/no-access-state-in-setstate': 0,
   },
 };
