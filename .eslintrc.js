@@ -101,5 +101,6 @@ module.exports = {
     // 关闭react强制状态初始化风格
     'react/state-in-constructor': 0,
     'react/no-access-state-in-setstate': 0,
+    'react/no-unused-state': 1,
   },
 };

@@ -6,11 +6,13 @@
  */
 
 import React from 'react';
+import { Layout } from 'antd';
 
-const Main = () => (
-  <div>
+const { Content } = Layout;
+const LayoutContent = () => (
+  <Content>
     内容主体
-  </div>
+  </Content>
 );
 
-export default Main;
+export default LayoutContent;

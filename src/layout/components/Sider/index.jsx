@@ -6,12 +6,14 @@
  */
 
 import React from 'react';
-import SubMenu from './components/SubMenu';
+import { Layout } from 'antd';
+import Menu from './components/SubMenu';
 
-const Sider = () => (
-  <div>
-    <SubMenu />
-  </div>
+const { Sider } = Layout;
+const LayoutSider = () => (
+  <Sider>
+    <Menu />
+  </Sider>
 );
 
-export default Sider;
+export default LayoutSider;
