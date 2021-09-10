@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import Layout from '@/layout';
-import Login from '../views/Login';
+import Login from '@/views/Login';
 
 class Router extends Component {
   render() {
