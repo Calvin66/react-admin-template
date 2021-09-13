@@ -83,7 +83,8 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     // 引用时候根据根目录基础
     'import/no-unresolved': 0,
-
+    // 当模块只有一个导出时，更喜欢使用默认导出而不是命名导出
+    'import/prefer-default-export': 0,
     // 关闭解构赋值报错
     'react/destructuring-assignment': 0,
     // 允许在 .js 和 .jsx 文件中使用  jsx

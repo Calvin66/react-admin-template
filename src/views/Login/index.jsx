@@ -13,8 +13,7 @@ import './inde.less';
 
 const Login = (props) => {
   const [loading, setLoading] = useState(false);
-  const onFinish = (values) => {
-    console.log(values);
+  const handleLogin = (values) => {
     setLoading(true);
     setTimeout(() => {
       message.success('登录成功');
@@ -37,7 +36,7 @@ const Login = (props) => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        onFinish={handleLogin}
         autoComplete="off">
         <div className="text-center">
           <h2>用户登录</h2>
