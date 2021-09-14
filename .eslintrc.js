@@ -56,6 +56,7 @@ module.exports = {
 
     // 设置是否可以重新改变参数的值
     'no-param-reassign': 0,
+    'no-shadow': 0,
     // 允许使用 for in
     'no-restricted-syntax': 0,
     'guard-for-in': 0,
