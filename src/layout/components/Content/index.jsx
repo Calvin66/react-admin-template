@@ -11,21 +11,23 @@ import { Layout } from 'antd';
 import routeList from '@/config/routeMap';
 
 const { Content } = Layout;
-const LayoutContent = () => (
-
-  <Content>
-    {/* 内容主体 */}
-    <Switch>
-      <Redirect exact from="/" to="/home" />
-      {routeList.map((route) => (
-        <Route
-          component={route.component}
-          key={route.path}
-          path={route.path} />
-      ))}
-      <Redirect to="/error/404" />
-    </Switch>
-  </Content>
-);
+const LayoutContent = (props) => {
+  const { location } = props;
+  return (
+    <Content>
+      {/* 内容主体 */}
+      <Switch location={location}>
+        <Redirect exact from="/" to="/home" />
+        {routeList.map((route) => (
+          <Route
+            component={route.component}
+            key={route.path}
+            path={route.path} />
+        ))}
+        <Redirect to="/error/404" />
+      </Switch>
+    </Content>
+  );
+};
 
 export default withRouter(LayoutContent);
