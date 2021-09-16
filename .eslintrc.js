@@ -48,10 +48,12 @@ module.exports = {
     // 关闭不允许使用 no-tabs
     'no-tabs': 'off',
     'no-console': 0,
+    'no-new': 0,
     // 设置不冲突 underscore 库
     'no-underscore-dangle': 0,
     // 箭头函数直接返回的时候不需要 大括号 {}
-    'arrow-body-style': [2, 'as-needed'],
+    // 'arrow-body-style': [2, 'as-needed'],
+    'arrow-body-style': 0,
     'no-alert': 'error',
 
     // 设置是否可以重新改变参数的值

@@ -5,21 +5,27 @@
  * @Date: 2021-09-07 22:26:27
  */
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+// import { withRouter } from 'react-router-dom';
 import {
   Form, Input, Button, Spin, message,
 } from 'antd';
 import './inde.less';
+import { handleLogin } from '@/store/actions/user';
 
 const Login = (props) => {
+  const { handleLogin } = props;
   const [loading, setLoading] = useState(false);
-  const handleLogin = () => {
+  const onFinish = ({ username, password }) => {
     setLoading(true);
-    setTimeout(() => {
-      message.success('登录成功');
+    handleLogin(username, password).then((data) => {
+      message.success(data.message);
+      // props.history.push('/');
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
       setLoading(false);
-      props.history.push('/');
-    }, 1000);
+    });
   };
 
   return (
@@ -36,7 +42,7 @@ const Login = (props) => {
         initialValues={{
           remember: true,
         }}
-        onFinish={handleLogin}
+        onFinish={onFinish}
         autoComplete="off">
         <div className="text-center">
           <h2>用户登录</h2>
@@ -83,5 +89,9 @@ const Login = (props) => {
     </div>
   );
 };
-
-export default withRouter(Login);
+const mapStateToProps = (state) => {
+  return {
+    token: state.user.token,
+  };
+};
+export default connect(mapStateToProps, { handleLogin })(Login);

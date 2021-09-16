@@ -4,10 +4,11 @@
  * @Date: 2021-09-13 17:28:45
  */
 
+import { localstorageGet } from '@/utils/auth';
 import * as types from '../action-types';
 
 const initUserInfo = {
-  token: '',
+  token: localstorageGet('token'),
 };
 export default function user(state = initUserInfo, action) {
   switch (action.type) {
