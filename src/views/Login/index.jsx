@@ -21,7 +21,7 @@ const Login = (props) => {
     login(username, password).then((data) => {
       message.success(data.message);
     }).catch((err) => {
-      console.log(err);
+      message.error(err.message);
     }).finally(() => {
       setLoading(false);
     });
@@ -90,9 +90,7 @@ const Login = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    token: state.user.token,
-  };
-};
+const mapStateToProps = (state) => ({
+  token: state.user.token,
+});
 export default connect(mapStateToProps, { login })(Login);

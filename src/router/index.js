@@ -32,9 +32,7 @@ class Router extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    token: state.user.token,
-  };
-};
+const mapStateToProps = (state) => ({
+  token: state.user.token,
+});
 export default connect(mapStateToProps)(Router);

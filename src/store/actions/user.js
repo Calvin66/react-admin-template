@@ -5,36 +5,37 @@
  */
 
 import { setToken, removeToken } from '@/utils/auth';
+import { reqLogin, reqLogout } from '@/api/login';
 import * as actionTypes from '../action-types';
 
-export const login = () => {
-  return (dispatch) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const data = {
-          isSuccess: true,
-          message: '登录成功',
-          token: '123',
-          userIfon: {
-            username: 'admin',
-            role: ['admin'],
-          },
-        };
-        const { token } = data;
-        dispatch({
-          type: actionTypes.USER_SET_USER_TOKEN,
-          token,
-        });
-        setToken(token);
-        resolve(data);
-      }, 500);
-    });
-  };
-};
-
-export const logout = () => (dispatch) => {
-  removeToken();
-  dispatch({
-    type: actionTypes.USER_REMOVE_USER_TOKEN,
+export const login = (username, password) => (dispatch) => new Promise((resolve, reject) => {
+  reqLogin({ username, password }).then((res) => {
+    const { data } = res;
+    if (data.isSuccess) {
+      const { token } = data;
+      dispatch({
+        type: actionTypes.USER_SET_USER_TOKEN,
+        token,
+      });
+      setToken(token);
+      resolve(data);
+    } else {
+      reject(data);
+    }
   });
-};
+});
+
+export const logout = () => (dispatch) => new Promise((resolve, reject) => {
+  reqLogout().then((res) => {
+    const { data } = res;
+    if (data.isSuccess) {
+      removeToken();
+      dispatch({
+        type: actionTypes.USER_REMOVE_USER_TOKEN,
+      });
+      resolve(data);
+    } else {
+      reject(data);
+    }
+  });
+});

@@ -28,27 +28,3 @@ export function deleteUser(data) {
     data,
   });
 }
-
-export function editUser(data) {
-  return request({
-    url: '/user/edit',
-    method: 'post',
-    data,
-  });
-}
-
-export function reqValidatUserID(data) {
-  return request({
-    url: '/user/validatUserID',
-    method: 'post',
-    data,
-  });
-}
-
-export function addUser(data) {
-  return request({
-    url: '/user/add',
-    method: 'post',
-    data,
-  });
-}
