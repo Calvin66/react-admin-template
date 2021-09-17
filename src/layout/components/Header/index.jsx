@@ -7,13 +7,21 @@
 import React from 'react';
 import { Layout } from 'antd';
 import './index.less';
+import { connect } from 'react-redux';
+import { logout } from '@/store/actions/user';
 
 const { Header } = Layout;
 
-const LayoutContent = () => (
-  <Header>
-    头部组件
-  </Header>
-);
+const LayoutHeader = (props) => {
+  const { logout } = props;
+  const handleLogout = () => {
+    logout();
+  };
+  return (
+    <Header>
+      <div onClick={handleLogout}>退出</div>
+    </Header>
+  );
+};
 
-export default LayoutContent;
+export default connect(null, { logout })(LayoutHeader);

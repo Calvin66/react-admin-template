@@ -6,28 +6,29 @@
  */
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-// import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {
   Form, Input, Button, Spin, message,
 } from 'antd';
 import './inde.less';
-import { handleLogin } from '@/store/actions/user';
+import { login } from '@/store/actions/user';
 
 const Login = (props) => {
-  const { handleLogin } = props;
+  const { token, login } = props;
   const [loading, setLoading] = useState(false);
-  const onFinish = ({ username, password }) => {
+  const handleLogin = ({ username, password }) => {
     setLoading(true);
-    handleLogin(username, password).then((data) => {
+    login(username, password).then((data) => {
       message.success(data.message);
-      // props.history.push('/');
     }).catch((err) => {
       console.log(err);
     }).finally(() => {
       setLoading(false);
     });
   };
-
+  if (token) {
+    return <Redirect to="/home" />;
+  }
   return (
     <div className="login-container">
       <Form
@@ -42,7 +43,7 @@ const Login = (props) => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        onFinish={handleLogin}
         autoComplete="off">
         <div className="text-center">
           <h2>用户登录</h2>
@@ -94,4 +95,4 @@ const mapStateToProps = (state) => {
     token: state.user.token,
   };
 };
-export default connect(mapStateToProps, { handleLogin })(Login);
+export default connect(mapStateToProps, { login })(Login);

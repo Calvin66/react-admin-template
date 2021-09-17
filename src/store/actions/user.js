@@ -4,13 +4,12 @@
  * @Date: 2021-09-13 16:17:14
  */
 
-import { localstorageSet } from '@/utils/auth';
+import { setToken, removeToken } from '@/utils/auth';
 import * as actionTypes from '../action-types';
 
-export const handleLogin = (username, password) => {
+export const login = () => {
   return (dispatch) => {
     return new Promise((resolve) => {
-      console.log(username, password);
       setTimeout(() => {
         const data = {
           isSuccess: true,
@@ -26,9 +25,16 @@ export const handleLogin = (username, password) => {
           type: actionTypes.USER_SET_USER_TOKEN,
           token,
         });
-        localstorageSet('token', token);
+        setToken(token);
         resolve(data);
       }, 500);
     });
   };
+};
+
+export const logout = () => (dispatch) => {
+  removeToken();
+  dispatch({
+    type: actionTypes.USER_REMOVE_USER_TOKEN,
+  });
 };

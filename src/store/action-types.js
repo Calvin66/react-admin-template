@@ -6,3 +6,4 @@
 
 // user
 export const USER_SET_USER_TOKEN = 'USER_SET_USER_TOKEN';
+export const USER_REMOVE_USER_TOKEN = 'USER_REMOVE_USER_TOKEN';

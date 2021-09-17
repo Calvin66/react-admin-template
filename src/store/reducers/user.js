@@ -4,11 +4,11 @@
  * @Date: 2021-09-13 17:28:45
  */
 
-import { localstorageGet } from '@/utils/auth';
+import { getToken } from '@/utils/auth';
 import * as types from '../action-types';
 
 const initUserInfo = {
-  token: localstorageGet('token'),
+  token: getToken(),
 };
 export default function user(state = initUserInfo, action) {
   switch (action.type) {
@@ -16,6 +16,11 @@ export default function user(state = initUserInfo, action) {
       return {
         ...state,
         token: action.token,
+      };
+    case types.USER_REMOVE_USER_TOKEN:
+      return {
+        ...state,
+        token: null,
       };
     default:
       return state;

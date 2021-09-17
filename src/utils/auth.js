@@ -3,19 +3,18 @@
  * @Author: Calvin
  * @Date: 2021-01-14 11:48:40
  */
-export const localstorageSet = (name, content) => {
-  if (!name) return;
-  if (typeof content !== 'string') {
-    content = JSON.stringify(content);
-  }
-  window.localStorage.setItem(name, content);
-};
-export const localstorageGet = (name) => {
-  if (!name) return;
-  return window.localStorage.getItem(name);
-};
+import { localstorageSet, localstorageGet, localstorageRemove } from './localstorage';
 
-export const localstorageRemove = (name) => {
-  if (!name) return;
-  return window.localStorage.removeItem(name);
-};
+const TokenKey = 'Token';
+
+export function getToken() {
+  return localstorageGet(TokenKey);
+}
+
+export function setToken(token) {
+  return localstorageSet(TokenKey, token);
+}
+
+export function removeToken() {
+  return localstorageRemove(TokenKey);
+}

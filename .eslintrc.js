@@ -55,6 +55,7 @@ module.exports = {
     // 'arrow-body-style': [2, 'as-needed'],
     'arrow-body-style': 0,
     'no-alert': 'error',
+    'no-empty': 1,
 
     // 设置是否可以重新改变参数的值
     'no-param-reassign': 0,
