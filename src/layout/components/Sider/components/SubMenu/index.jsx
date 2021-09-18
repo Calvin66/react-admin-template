@@ -45,7 +45,7 @@ class SiderMenu extends Component {
         const cItem = item.children.find(
           (items) => path.indexOf(items.path) === 0,
         );
-          // 如果存在, 说明当前item的子列表需要打开
+        // 如果存在, 说明当前item的子列表需要打开
         if (cItem) {
           this.setState((state) => ({
             openKey: [...state.openKey, item.path],
@@ -62,7 +62,7 @@ class SiderMenu extends Component {
       return pre;
     }, []);
   };
-  
+
   render() {
     const path = this.props.location.pathname;
     const { openKey } = this.state;

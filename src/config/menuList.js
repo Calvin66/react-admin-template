@@ -23,10 +23,12 @@ const menuList = [
   },
   {
     title: '路由嵌套',
+    path: '/nestedMenu',
     icon: <UserOutlined />,
     children: [
       {
         title: '菜单1',
+        path: '/nestedMenu/menu1',
         children: [
           {
             title: '菜单1-1',
@@ -34,6 +36,7 @@ const menuList = [
           },
           {
             title: '菜单1-2',
+            path: '/nestedMenu/menu1/menu1-2',
             children: [
               {
                 title: '菜单1-2-1',
