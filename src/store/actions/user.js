@@ -39,3 +39,8 @@ export const logout = () => (dispatch) => new Promise((resolve, reject) => {
     }
   });
 });
+
+export const setRoleMenuList = (list) => ({
+  type: actionTypes.SET_PERMISSION_LIST,
+  list,
+});

@@ -6,19 +6,20 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
 import { Redirect, withRouter, Route, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
-import routeList from '@/config/routeMap';
 
 const { Content } = Layout;
 const LayoutContent = (props) => {
-  const { location } = props;
+  const { location, permissionList } = props;
+  console.log(permissionList, '打印路由');
   return (
     <Content>
       {/* 内容主体 */}
       <Switch location={location}>
         <Redirect exact from="/" to="/home" />
-        {routeList.map((route) => (
+        {permissionList.map((route) => (
           <Route
             component={route.component}
             key={route.path}
@@ -29,5 +30,7 @@ const LayoutContent = (props) => {
     </Content>
   );
 };
-
-export default withRouter(LayoutContent);
+const mapStateToProps = (state) => ({
+  permissionList: state.user.permissionList,
+});
+export default connect(mapStateToProps)(withRouter(LayoutContent));

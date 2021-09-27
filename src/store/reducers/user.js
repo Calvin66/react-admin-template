@@ -9,6 +9,7 @@ import * as types from '../action-types';
 
 const initUserInfo = {
   token: getToken(),
+  permissionList: [],
 };
 export default function user(state = initUserInfo, action) {
   switch (action.type) {
@@ -21,6 +22,11 @@ export default function user(state = initUserInfo, action) {
       return {
         ...state,
         token: null,
+      };
+    case types.SET_PERMISSION_LIST:
+      return {
+        ...state,
+        permissionList: action.list,
       };
     default:
       return state;

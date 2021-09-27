@@ -28,3 +28,11 @@ export function deleteUser(data) {
     data,
   });
 }
+
+export function reqRoleMenuList(data) {
+  return request({
+    url: '/user/getRoleMenuList',
+    method: 'post',
+    data,
+  });
+}
