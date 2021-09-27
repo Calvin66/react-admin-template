@@ -108,5 +108,7 @@ module.exports = {
     'react/state-in-constructor': 0,
     'react/no-access-state-in-setstate': 0,
     'react/no-unused-state': 1,
+    'react/no-deprecated': 0, // 不使用弃用的方法
+    'react/no-did-update-set-state': 0,
   },
 };

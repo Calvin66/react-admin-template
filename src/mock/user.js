@@ -18,7 +18,7 @@ export default {
       },
       {
         title: '路由嵌套',
-        path: '/userManage',
+        path: '/nestedMenu',
         children: [
           {
             title: '菜单2',
