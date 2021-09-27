@@ -13,7 +13,6 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 const LayoutContent = (props) => {
   const { location, permissionList } = props;
-  console.log(permissionList, '打印路由');
   return (
     <Content>
       {/* 内容主体 */}

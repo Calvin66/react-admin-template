@@ -5,7 +5,10 @@
  */
 
 import { setToken, removeToken } from '@/utils/auth';
+import { recursRouter } from '@/utils/permission';
 import { reqLogin, reqLogout } from '@/api/login';
+import { reqRoleMenuList } from '@/api/user';
+import routeList from '@/router/routeList';
 import * as actionTypes from '../action-types';
 
 export const login = (username, password) => (dispatch) => new Promise((resolve, reject) => {
@@ -40,7 +43,21 @@ export const logout = () => (dispatch) => new Promise((resolve, reject) => {
   });
 });
 
-export const setRoleMenuList = (list) => ({
-  type: actionTypes.SET_PERMISSION_LIST,
-  list,
+export const getRoleMenuList = () => (dispatch) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reqRoleMenuList().then((res) => {
+      const { data } = res;
+      if (data.isSuccess) {
+        const { list } = data;
+        const permissionRouteList = recursRouter(routeList, list);
+        dispatch({
+          type: actionTypes.SET_PERMISSION_LIST,
+          list: permissionRouteList,
+        });
+        resolve();
+      } else {
+        reject();
+      }
+    });
+  }, 1000);
 });
