@@ -16,6 +16,16 @@ export default {
         title: '用户管理',
         path: '/userManage',
       },
+      {
+        title: '路由嵌套',
+        path: '/userManage',
+        children: [
+          {
+            title: '菜单2',
+            path: '/nestedMenu/menu2',
+          },
+        ],
+      },
     ],
   }),
 };

@@ -7,19 +7,27 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { setUserToken } from '@/store/actions/user';
+import { setToken } from '@/utils/auth';
+import { postLogin } from '@/api/login';
 import {
   Form, Input, Button, Spin, message,
 } from 'antd';
 import './inde.less';
-import { login } from '@/store/actions/user';
 
 const Login = (props) => {
-  const { token, login } = props;
+  const { token, setUserToken } = props;
   const [loading, setLoading] = useState(false);
   const handleLogin = ({ username, password }) => {
     setLoading(true);
-    login(username, password).then((data) => {
-      message.success(data.message);
+    postLogin(username, password).then((res) => {
+      const { data } = res;
+      if (data.isSuccess) {
+        const { token } = data;
+        setToken(token);
+        setUserToken(token);
+        message.success(data.message);
+      }
     }).catch((err) => {
       message.error(err.message);
     }).finally(() => {
@@ -93,4 +101,7 @@ const Login = (props) => {
 const mapStateToProps = (state) => ({
   token: state.user.token,
 });
-export default connect(mapStateToProps, { login })(Login);
+const mapDispatchToProps = (dispatch) => ({
+  setUserToken: (token) => dispatch(setUserToken(token)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

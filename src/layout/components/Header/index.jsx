@@ -8,14 +8,18 @@ import React from 'react';
 import { Layout, message } from 'antd';
 import './index.less';
 import { connect } from 'react-redux';
-import { logout } from '@/store/actions/user';
+import { removeUserToken } from '@/store/actions/user';
+import { removeToken } from '@/utils/auth';
+import { postLogout } from '@/api/login';
 
 const { Header } = Layout;
 
 const LayoutHeader = (props) => {
-  const { logout } = props;
+  const { removeUserToken } = props;
   const handleLogout = () => {
-    logout().then((res) => {
+    postLogout().then((res) => {
+      removeToken();
+      removeUserToken();
       message.success(res.message);
     });
   };
@@ -25,5 +29,7 @@ const LayoutHeader = (props) => {
     </Header>
   );
 };
-
-export default connect(null, { logout })(LayoutHeader);
+const mapDispatchToProps = (dispatch) => ({
+  removeUserToken: () => dispatch(removeUserToken()),
+});
+export default connect(null, mapDispatchToProps)(LayoutHeader);

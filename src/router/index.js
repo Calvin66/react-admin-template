@@ -7,13 +7,34 @@
 import React from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getRoleMenuList } from '@/store/actions/user';
+import { setPermissionList, setMenusList } from '@/store/actions/user';
+import { reqRoleMenuList } from '@/api/user';
+import constantRoutes from '@/router/constantRoutes';
+import asyncRoutes from '@/router/asyncRoutes';
+import { recursRoutes, recursMenus } from '@/utils/permission';
 import Layout from '@/layout';
 import Login from '@/views/Login';
 
 const Router = (props) => {
-  const { token, getRoleMenuList, permissionList } = props;
+  const { token, permissionList, setPermissionList, setMenusList } = props;
   // 获取权限菜单
+  const getRoleMenuList = () => new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reqRoleMenuList().then((res) => {
+        const { data } = res;
+        if (data.isSuccess) {
+          const { list: permissionRoutes } = data;
+          const permissionRouteList = recursRoutes(permissionRoutes, asyncRoutes, constantRoutes);
+          const permissionMenusList = recursMenus(permissionRoutes);
+          setPermissionList(permissionRouteList);
+          setMenusList(permissionMenusList);
+          resolve();
+        } else {
+          reject();
+        }
+      });
+    }, 1000);
+  });
   return (
     <HashRouter>
       <Switch>
@@ -38,5 +59,8 @@ const mapStateToProps = (state) => ({
   token: state.user.token,
   permissionList: state.user.permissionList,
 });
-
-export default connect(mapStateToProps, { getRoleMenuList })(Router);
+const mapDispatchToProps = (dispatch) => ({
+  setPermissionList: (permissionList) => dispatch(setPermissionList(permissionList)),
+  setMenusList: (menusList) => dispatch(setMenusList(menusList)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Router);

@@ -10,15 +10,16 @@ import * as types from '../action-types';
 const initUserInfo = {
   token: getToken(),
   permissionList: [],
+  menusList: [],
 };
 export default function user(state = initUserInfo, action) {
   switch (action.type) {
-    case types.USER_SET_USER_TOKEN:
+    case types.SET_USER_TOKEN:
       return {
         ...state,
         token: action.token,
       };
-    case types.USER_REMOVE_USER_TOKEN:
+    case types.REMOVE_USER_TOKEN:
       return {
         ...state,
         token: null,
@@ -26,7 +27,12 @@ export default function user(state = initUserInfo, action) {
     case types.SET_PERMISSION_LIST:
       return {
         ...state,
-        permissionList: action.list,
+        permissionList: action.permissionList,
+      };
+    case types.SET_MENUS_LIST:
+      return {
+        ...state,
+        menusList: action.menusList,
       };
     default:
       return state;

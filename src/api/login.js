@@ -5,7 +5,7 @@
  */
 import request from '@/utils/request';
 
-export function reqLogin(data) {
+export function postLogin(data) {
   return request({
     url: '/login',
     method: 'post',
@@ -13,7 +13,7 @@ export function reqLogin(data) {
   });
 }
 
-export function reqLogout(data) {
+export function postLogout(data) {
   return request({
     url: '/logout',
     method: 'post',

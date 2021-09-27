@@ -6,11 +6,11 @@
  */
 
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Menu } from 'antd';
 import { Link, withRouter } from 'react-router-dom';
 // 引入侧边栏配置
 import { Scrollbars } from 'react-custom-scrollbars';
-import menuList from '@/config/menuList';
 import './index.less';
 
 const { SubMenu } = Menu;
@@ -22,16 +22,18 @@ class SiderMenu extends Component {
   };
   // 刷新挂载组件
   componentDidMount() {
-    const menuTreeNode = this.renderMenu(menuList);
+    const { menusList } = this.props;
+    console.log(menusList, '打印menuList');
+    const menuTreeNode = this.renderMenu(menusList);
     this.setState({
       menuTreeNode,
     });
   }
   // 菜单渲染
-  renderMenu = (menuList) => {
+  renderMenu = (menusList) => {
     // 得到当前请求的路由路径
     const path = this.props.location.pathname;
-    return menuList.reduce((pre, item) => {
+    return menusList.reduce((pre, item) => {
       if (!item.children) {
         pre.push(
           <Menu.Item key={item.path} icon={item.icon} title={item.title}>
@@ -80,4 +82,7 @@ class SiderMenu extends Component {
   }
 }
 
-export default withRouter(SiderMenu);
+const mapStateToProps = (state) => ({
+  menusList: state.user.menusList,
+});
+export default connect(mapStateToProps)(withRouter(SiderMenu));

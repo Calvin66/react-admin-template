@@ -5,9 +5,11 @@
  */
 
 // user
-export const USER_SET_USER_TOKEN = 'USER_SET_USER_TOKEN';
-export const USER_REMOVE_USER_TOKEN = 'USER_REMOVE_USER_TOKEN';
+export const SET_USER_TOKEN = 'SET_USER_TOKEN';
+export const REMOVE_USER_TOKEN = 'REMOVE_USER_TOKEN';
 
 // permissionList
 export const SET_PERMISSION_LIST = 'SET_PERMISSION_LIST';
-export const GET_PERMISSION_LIST = 'GET_PERMISSION_LIST';
+
+// menusList
+export const SET_MENUS_LIST = 'SET_MENUS_LIST';
