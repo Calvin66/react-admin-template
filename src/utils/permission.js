@@ -39,16 +39,27 @@ export const recursMenus = (permissionMenus = []) => {
 };
 
 /**
- * 递归处理路由，将多维数组转成一维数组
+ * 递归处理路由
  * @param {Array} permissionRoutes 后台返回的用户权限路由
  * @return {Array} realRoutes 过滤成一维数组后的路由
  */
-export const reducePermissionList = (permissionRoutes) => permissionRoutes.reduce((prev, cur) => {
-  const { children, ...item } = cur;
-  if (children) {
-    prev.push(...cur.children);
-  } else {
-    prev.push(item);
-  }
-  return prev;
-}, []);
+export const reducePermissionList = (permissionRoutes) => {
+  const resultMenus = [];
+  recursiveFunc(permissionRoutes, resultMenus);
+  return resultMenus;
+};
+
+/**
+ * @name: 将多维数据转成一维数组
+ * @param {Array} permissionRoutes 后台返回的用户权限路由
+ * @return {Array} resultList 过滤成一维数组后的路由
+ */
+const recursiveFunc = (permissionRoutes, resultList) => {
+  permissionRoutes.forEach((item) => {
+    if (item.children && item.children.length) {
+      recursiveFunc(item.children, resultList);
+    } else {
+      resultList.push(item);
+    }
+  });
+};
