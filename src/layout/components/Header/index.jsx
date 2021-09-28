@@ -20,7 +20,7 @@ const LayoutHeader = (props) => {
     postLogout().then((res) => {
       removeToken();
       removeUserToken();
-      message.success(res.message);
+      message.success(res.data.message);
     });
   };
   return (

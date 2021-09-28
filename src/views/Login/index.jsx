@@ -20,18 +20,19 @@ const Login = (props) => {
   const [loading, setLoading] = useState(false);
   const handleLogin = ({ username, password }) => {
     setLoading(true);
-    postLogin(username, password).then((res) => {
+    postLogin({ username: username.trim(), password }).then((res) => {
+      setLoading(false);
       const { data } = res;
       if (data.isSuccess) {
         const { token } = data;
         setToken(token);
         setUserToken(token);
         message.success(data.message);
+      } else {
+        message.error(data.message);
       }
     }).catch((err) => {
       message.error(err.message);
-    }).finally(() => {
-      setLoading(false);
     });
   };
   if (token) {
