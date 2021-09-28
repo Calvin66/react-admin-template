@@ -19,7 +19,7 @@ export const recursRoutes = (permissionRoutes = [], asyncRoutes = [], constantRo
   reducepermissionRoutes.forEach((perItem) => {
     asyncRoutes.forEach((asynItem) => {
       if (perItem.path === asynItem.path) {
-        resultRoute.push(perItem);
+        resultRoute.push(asynItem);
       }
     });
   });
